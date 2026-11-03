@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/bijaybohora/nepal-date-kit/blob/main/schema/calendar-data.schema.json",
+  "title": "nepal-date-kit calendar data",
+  "description": "Month lengths and Gregorian anchors for Bikram Sambat conversion. This document has no holidays, festivals, tithi, or events. The JSON Schema checks the shape. validateCalendarData() in nepal-date-kit also checks that years are contiguous and that each adStartOfYear is the day after the previous year ends.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["format", "version", "anchor", "verifiedThrough", "years"],
+  "properties": {
+    "format": {
+      "const": "nepal-date-kit/calendar-data",
+      "description": "Document type discriminator."
+    },
+    "version": {
+      "const": 1,
+      "description": "Schema version. Only 1 is accepted."
+    },
+    "source": {
+      "type": "string",
+      "description": "Where the month lengths came from."
+    },
+    "unverifiedYears": {
+      "type": "string",
+      "description": "Note for years after verifiedThrough. Not a machine range."
+    },
+    "anchor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["bs", "ad"],
+      "description": "First supported BS day and the matching Gregorian day. anchor.bs is always YYYY-01-01 of the earliest year, and anchor.ad equals that year's adStartOfYear.",
+      "properties": {
+        "bs": {
+          "type": "string",
+          "pattern": "^[1-9][0-9]{3}-01-01$",
+          "description": "BS date of 1 Baishakh of the earliest year."
+        },
+        "ad": {
+          "type": "string",
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+          "description": "Gregorian date of that BS day, YYYY-MM-DD."
+        }
+      }
+    },
+    "verifiedThrough": {
+      "type": "integer",
+      "minimum": 1000,
+      "maximum": 9999,
+      "description": "Last BS year whose lengths have been checked. Must be one of the years in this document. Later years still convert."
+    },
+    "years": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": false,
+      "description": "Map of BS year to month lengths. Keys must be contiguous four-digit years.",
+      "patternProperties": {
+        "^[1-9][0-9]{3}$": { "$ref": "#/$defs/year" }
+      }
+    }
+  },
+  "$defs": {
+    "year": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["months", "adStartOfYear"],
+      "properties": {
+        "months": {
+          "type": "array",
+          "minItems": 12,
+          "maxItems": 12,
+          "description": "Day counts for Baishakh, Jestha, Aashadha, Shrawan, Bhadra, Ashwin, Kartik, Mangsir, Paush, Magh, Falgun, and Chaitra.",
+          "items": {
+            "type": "integer",
+            "minimum": 29,
+            "maximum": 32
+          }
+        },
+        "adStartOfYear": {
+          "type": "string",
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+          "description": "Gregorian date of 1 Baishakh for this BS year."
+        }
+      }
+    }
+  }
+}
