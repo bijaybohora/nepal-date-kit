@@ -1,5 +1,6 @@
 # nepal-date-kit
 
+[![npm version](https://img.shields.io/npm/v/nepal-date-kit)](https://www.npmjs.com/package/nepal-date-kit)
 [![CI](https://github.com/bijaybohora/nepal-date-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/bijaybohora/nepal-date-kit/actions/workflows/ci.yml)
 
 TypeScript toolkit for the Nepali **Bikram Sambat (BS)** calendar. Convert BS and AD dates, format them in Nepali or English, and build a month grid for any UI.
