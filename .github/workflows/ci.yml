@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+      - name: Import the ESM and CJS builds
+        run: |
+          node --input-type=module -e "import { bsToAd } from './dist/index.js'; const ad = bsToAd(2000, 1, 1); if (ad.year !== 1943 || ad.month !== 4 || ad.day !== 14) process.exit(1);"
+          node -e "const { bsToAd } = require('./dist/index.cjs'); const ad = bsToAd(2000, 1, 1); if (ad.year !== 1943 || ad.month !== 4 || ad.day !== 14) process.exit(1);"

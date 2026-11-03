@@ -1,0 +1,77 @@
+{
+  "name": "nepal-date-kit",
+  "version": "0.1.0",
+  "description": "Bikram Sambat (BS) calendar toolkit for TypeScript: convert, format, and build Nepali month grids.",
+  "license": "MIT",
+  "author": "Bijay Bohora (https://beecodeguy.com)",
+  "homepage": "https://github.com/bijaybohora/nepal-date-kit#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bijaybohora/nepal-date-kit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bijaybohora/nepal-date-kit/issues"
+  },
+  "keywords": [
+    "nepal",
+    "nepali",
+    "bikram",
+    "sambat",
+    "vikram-samvat",
+    "bs",
+    "calendar",
+    "date",
+    "bikram-sambat"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./calendar-data.json": "./data/bs-month-lengths.json",
+    "./schema.json": "./schema/calendar-data.schema.json"
+  },
+  "files": [
+    "dist",
+    "data",
+    "schema",
+    "LICENSE",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run lint && npm run typecheck && npm test && npm run build",
+    "prepublishOnly": "npm run check"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@types/node": "^22.19.0",
+    "eslint": "^9.39.1",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.46.3",
+    "vitest": "^3.2.4"
+  }
+}
