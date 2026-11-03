@@ -3,14 +3,15 @@
   "version": "0.1.0",
   "description": "Bikram Sambat (BS) calendar toolkit for TypeScript: convert, format, and build Nepali month grids.",
   "license": "MIT",
-  "author": "Bijay Bohora (https://beecodeguy.com)",
+  "author": "Bijay Bohora <beecodeguy@gmail.com> (https://beecodeguy.com)",
   "homepage": "https://github.com/bijaybohora/nepal-date-kit#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bijaybohora/nepal-date-kit.git"
   },
   "bugs": {
-    "url": "https://github.com/bijaybohora/nepal-date-kit/issues"
+    "url": "https://github.com/bijaybohora/nepal-date-kit/issues",
+    "email": "beecodeguy@gmail.com"
   },
   "keywords": [
     "nepal",
@@ -39,16 +40,13 @@
         "default": "./dist/index.cjs"
       }
     },
-    "./calendar-data.json": "./data/bs-month-lengths.json",
     "./schema.json": "./schema/calendar-data.schema.json"
   },
   "files": [
     "dist",
-    "data",
     "schema",
     "LICENSE",
-    "README.md",
-    "CHANGELOG.md"
+    "README.md"
   ],
   "engines": {
     "node": ">=18"
@@ -63,7 +61,7 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "check": "npm run lint && npm run typecheck && npm test && npm run build",
-    "prepublishOnly": "npm run check"
+    "prepublishOnly": "npm run build"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",

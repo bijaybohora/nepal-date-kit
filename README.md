@@ -239,7 +239,7 @@ resetCalendarData(); // back to the built-in table
 
 JSON Schema: [`schema/calendar-data.schema.json`](schema/calendar-data.schema.json), also exported as `nepal-date-kit/schema.json`.
 
-Built-in data: [`data/bs-month-lengths.json`](data/bs-month-lengths.json), also exported as `nepal-date-kit/calendar-data.json`.
+Built-in month lengths are compiled into the package. In this repository the source file is [`data/bs-month-lengths.json`](data/bs-month-lengths.json). `getBuiltinCalendarData()` returns that table at runtime. The raw file is not part of the npm tarball.
 
 ```json
 {
@@ -321,9 +321,7 @@ Messages name the supported range of the table that is currently loaded. After `
 
 Holidays, festivals, tithi, and richer calendar data are offered separately. They are intentionally not part of this package.
 
-<!-- TODO: replace the contact line below with the public email and product page. -->
-
-**Contact:** TODO — add email and website. The maintainer's site is <https://beecodeguy.com>.
+**Contact:** [beecodeguy@gmail.com](mailto:beecodeguy@gmail.com) · <https://beecodeguy.com>
 
 ## Development
 
